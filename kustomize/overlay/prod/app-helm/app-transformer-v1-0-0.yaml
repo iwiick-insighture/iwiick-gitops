@@ -1,0 +1,24 @@
+apiVersion: transformers.customplugin.co/v1
+kind: SkyUAppTransformer
+metadata:
+  name: skyu-deployment
+  annotations:
+    config.kubernetes.io/function: |
+      exec:
+        path: skyu-app-transformer
+spec:
+  applicationContainers: []
+  name: app-helm
+  type: HelmChart
+  horizontalAutoScalingRules: []
+  volumes: []
+  version: v1.0.0
+  labels:
+    app: app-helm
+    version: v1.0.0
+    applicationId: app_6cfed5bc-d58e-486b-b94e-abd1cc90ff83
+    projectId: project_c0bc69cf-4b2e-4493-ab8e-970a6433cce0
+    organizationId: org_6de1b366-9da6-4d55-b363-f5a2c4382016
+    environmentId: env_8436aba8-7832-4346-86a8-95034b409364
+    environmentName: prod
+  namespace: iwiick-proj-1-prod

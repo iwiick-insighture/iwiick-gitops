@@ -1,0 +1,590 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: app-helm-v1-0-0
+  namespace: iwiick-proj-1-staging
+  labels:
+    organizationId: org_6de1b366-9da6-4d55-b363-f5a2c4382016
+    projectId: project_c0bc69cf-4b2e-4493-ab8e-970a6433cce0
+    environmentId: env_5b89d46d-9a16-4f9f-ad9a-926157935bc6
+    applicaitonId: app_6cfed5bc-d58e-486b-b94e-abd1cc90ff83
+spec:
+  interval: 5m0s
+  chart:
+    spec:
+      chart: bitnami/airflow/Chart.yaml
+      sourceRef:
+        kind: GitRepository
+        name: app-helm-v1-0-0
+        namespace: iwiick-proj-1-staging
+  values:
+    global:
+      imageRegistry: ''
+      imagePullSecrets: []
+      storageClass: ''
+      compatibility:
+        openshift:
+          adaptSecurityContext: auto
+    kubeVersion: ''
+    nameOverride: ''
+    fullnameOverride: ''
+    clusterDomain: cluster.local
+    extraDeploy: []
+    commonLabels: {}
+    commonAnnotations: {}
+    diagnosticMode:
+      enabled: false
+      command:
+        - sleep
+      args:
+        - infinity
+    auth:
+      username: user
+      password: ''
+      fernetKey: ''
+      secretKey: ''
+      existingSecret: ''
+    executor: CeleryExecutor
+    loadExamples: false
+    configuration: ''
+    existingConfigmap: ''
+    dags:
+      existingConfigmap: ''
+      image:
+        registry: docker.io
+        repository: bitnami/os-shell
+        tag: 12-debian-12-r22
+        digest: ''
+        pullPolicy: IfNotPresent
+        pullSecrets: []
+    extraEnvVars: []
+    extraEnvVarsCM: ''
+    extraEnvVarsSecret: ''
+    extraEnvVarsSecrets: []
+    sidecars: []
+    initContainers: []
+    extraVolumeMounts: []
+    extraVolumes: []
+    web:
+      image:
+        registry: docker.io
+        repository: bitnami/airflow
+        tag: 2.9.2-debian-12-r1
+        digest: ''
+        pullPolicy: IfNotPresent
+        pullSecrets: []
+        debug: false
+      baseUrl: ''
+      existingConfigmap: ''
+      command: []
+      args: []
+      extraEnvVars: []
+      extraEnvVarsCM: ''
+      extraEnvVarsSecret: ''
+      extraEnvVarsSecrets: []
+      containerPorts:
+        http: 8080
+      replicaCount: 1
+      livenessProbe:
+        enabled: true
+        initialDelaySeconds: 180
+        periodSeconds: 20
+        timeoutSeconds: 5
+        failureThreshold: 6
+        successThreshold: 1
+      readinessProbe:
+        enabled: true
+        initialDelaySeconds: 30
+        periodSeconds: 10
+        timeoutSeconds: 5
+        failureThreshold: 6
+        successThreshold: 1
+      startupProbe:
+        enabled: false
+        initialDelaySeconds: 60
+        periodSeconds: 10
+        timeoutSeconds: 1
+        failureThreshold: 15
+        successThreshold: 1
+      customLivenessProbe: {}
+      customReadinessProbe: {}
+      customStartupProbe: {}
+      resourcesPreset: medium
+      resources: {}
+      podSecurityContext:
+        enabled: true
+        fsGroupChangePolicy: Always
+        sysctls: []
+        supplementalGroups: []
+        fsGroup: 1001
+      containerSecurityContext:
+        enabled: true
+        seLinuxOptions: {}
+        runAsUser: 1001
+        runAsGroup: 1001
+        runAsNonRoot: true
+        privileged: false
+        allowPrivilegeEscalation: false
+        readOnlyRootFilesystem: true
+        capabilities:
+          drop:
+            - ALL
+        seccompProfile:
+          type: RuntimeDefault
+      lifecycleHooks: {}
+      automountServiceAccountToken: false
+      hostAliases: []
+      podLabels: {}
+      podAnnotations: {}
+      affinity: {}
+      nodeAffinityPreset:
+        key: ''
+        type: ''
+        values: []
+      nodeSelector: {}
+      podAffinityPreset: ''
+      podAntiAffinityPreset: soft
+      tolerations: []
+      topologySpreadConstraints: []
+      priorityClassName: ''
+      schedulerName: ''
+      terminationGracePeriodSeconds: ''
+      updateStrategy:
+        type: RollingUpdate
+        rollingUpdate: {}
+      sidecars: []
+      initContainers: []
+      extraVolumeMounts: []
+      extraVolumes: []
+      pdb:
+        create: true
+        minAvailable: ''
+        maxUnavailable: ''
+      networkPolicy:
+        enabled: true
+        allowExternal: true
+        allowExternalEgress: true
+        extraIngress: []
+        extraEgress: []
+        ingressNSMatchLabels: {}
+        ingressNSPodMatchLabels: {}
+    scheduler:
+      image:
+        registry: docker.io
+        repository: bitnami/airflow-scheduler
+        tag: 2.9.2-debian-12-r0
+        digest: ''
+        pullPolicy: IfNotPresent
+        pullSecrets: []
+        debug: false
+      replicaCount: 1
+      command: []
+      args: []
+      extraEnvVars: []
+      extraEnvVarsCM: ''
+      extraEnvVarsSecret: ''
+      extraEnvVarsSecrets: []
+      livenessProbe:
+        enabled: true
+        initialDelaySeconds: 180
+        periodSeconds: 20
+        timeoutSeconds: 15
+        failureThreshold: 6
+        successThreshold: 1
+      readinessProbe:
+        enabled: true
+        initialDelaySeconds: 30
+        periodSeconds: 10
+        timeoutSeconds: 15
+        failureThreshold: 6
+        successThreshold: 1
+      startupProbe:
+        enabled: false
+        initialDelaySeconds: 60
+        periodSeconds: 10
+        timeoutSeconds: 1
+        failureThreshold: 15
+        successThreshold: 1
+      customLivenessProbe: {}
+      customReadinessProbe: {}
+      customStartupProbe: {}
+      resourcesPreset: small
+      resources: {}
+      podSecurityContext:
+        enabled: true
+        fsGroupChangePolicy: Always
+        sysctls: []
+        supplementalGroups: []
+        fsGroup: 1001
+      containerSecurityContext:
+        enabled: true
+        seLinuxOptions: {}
+        runAsUser: 1001
+        runAsGroup: 1001
+        runAsNonRoot: true
+        privileged: false
+        allowPrivilegeEscalation: false
+        readOnlyRootFilesystem: true
+        capabilities:
+          drop:
+            - ALL
+        seccompProfile:
+          type: RuntimeDefault
+      lifecycleHooks: {}
+      automountServiceAccountToken: false
+      hostAliases: []
+      podLabels: {}
+      podAnnotations: {}
+      affinity: {}
+      nodeAffinityPreset:
+        key: ''
+        type: ''
+        values: []
+      nodeSelector: {}
+      podAffinityPreset: ''
+      podAntiAffinityPreset: soft
+      tolerations: []
+      topologySpreadConstraints: []
+      priorityClassName: ''
+      schedulerName: ''
+      terminationGracePeriodSeconds: ''
+      updateStrategy:
+        type: RollingUpdate
+        rollingUpdate: {}
+      sidecars: []
+      initContainers: []
+      extraVolumeMounts: []
+      extraVolumes: []
+      pdb:
+        create: true
+        minAvailable: ''
+        maxUnavailable: ''
+      networkPolicy:
+        enabled: true
+        allowExternal: true
+        allowExternalEgress: true
+        extraIngress: []
+        extraEgress: []
+        ingressNSMatchLabels: {}
+        ingressNSPodMatchLabels: {}
+    worker:
+      image:
+        registry: docker.io
+        repository: bitnami/airflow-worker
+        tag: 2.9.2-debian-12-r0
+        digest: ''
+        pullPolicy: IfNotPresent
+        pullSecrets: []
+        debug: false
+      command: []
+      args: []
+      extraEnvVars: []
+      extraEnvVarsCM: ''
+      extraEnvVarsSecret: ''
+      extraEnvVarsSecrets: []
+      containerPorts:
+        http: 8793
+      replicaCount: 1
+      livenessProbe:
+        enabled: true
+        initialDelaySeconds: 180
+        periodSeconds: 20
+        timeoutSeconds: 5
+        failureThreshold: 6
+        successThreshold: 1
+      readinessProbe:
+        enabled: true
+        initialDelaySeconds: 30
+        periodSeconds: 10
+        timeoutSeconds: 5
+        failureThreshold: 6
+        successThreshold: 1
+      startupProbe:
+        enabled: false
+        initialDelaySeconds: 60
+        periodSeconds: 10
+        timeoutSeconds: 1
+        failureThreshold: 15
+        successThreshold: 1
+      customLivenessProbe: {}
+      customReadinessProbe: {}
+      customStartupProbe: {}
+      resourcesPreset: large
+      resources: {}
+      podSecurityContext:
+        enabled: true
+        fsGroupChangePolicy: Always
+        sysctls: []
+        supplementalGroups: []
+        fsGroup: 1001
+      containerSecurityContext:
+        enabled: true
+        seLinuxOptions: {}
+        runAsUser: 1001
+        runAsGroup: 1001
+        runAsNonRoot: true
+        privileged: false
+        allowPrivilegeEscalation: false
+        readOnlyRootFilesystem: true
+        capabilities:
+          drop:
+            - ALL
+        seccompProfile:
+          type: RuntimeDefault
+      lifecycleHooks: {}
+      automountServiceAccountToken: false
+      hostAliases: []
+      podLabels: {}
+      podAnnotations: {}
+      affinity: {}
+      nodeAffinityPreset:
+        key: ''
+        type: ''
+        values: []
+      nodeSelector: {}
+      podAffinityPreset: ''
+      podAntiAffinityPreset: soft
+      tolerations: []
+      topologySpreadConstraints: []
+      priorityClassName: ''
+      schedulerName: ''
+      terminationGracePeriodSeconds: ''
+      updateStrategy:
+        type: RollingUpdate
+        rollingUpdate: {}
+      sidecars: []
+      initContainers: []
+      extraVolumeMounts: []
+      extraVolumes: []
+      extraVolumeClaimTemplates: []
+      podTemplate: {}
+      pdb:
+        create: true
+        minAvailable: ''
+        maxUnavailable: ''
+      autoscaling:
+        enabled: false
+        minReplicas: 1
+        maxReplicas: 3
+        targetCPU: 80
+        targetMemory: 80
+      networkPolicy:
+        enabled: true
+        allowExternal: true
+        allowExternalEgress: true
+        extraIngress: []
+        extraEgress: []
+        ingressNSMatchLabels: {}
+        ingressNSPodMatchLabels: {}
+    git:
+      image:
+        registry: docker.io
+        repository: bitnami/git
+        tag: 2.45.2-debian-12-r0
+        digest: ''
+        pullPolicy: IfNotPresent
+        pullSecrets: []
+      dags:
+        enabled: false
+        repositories:
+          - repository: ''
+            branch: ''
+            name: ''
+            path: ''
+      plugins:
+        enabled: false
+        repositories:
+          - repository: ''
+            branch: ''
+            name: ''
+            path: ''
+      clone:
+        command: []
+        args: []
+        extraVolumeMounts: []
+        extraEnvVars: []
+        extraEnvVarsCM: ''
+        extraEnvVarsSecret: ''
+        resources: {}
+        resourcesPreset: nano
+      sync:
+        interval: 60
+        command: []
+        args: []
+        extraVolumeMounts: []
+        extraEnvVars: []
+        extraEnvVarsCM: ''
+        extraEnvVarsSecret: ''
+        resourcesPreset: nano
+        resources: {}
+    ldap:
+      enabled: false
+      uri: ldap://ldap_server:389
+      basedn: dc=example,dc=org
+      searchAttribute: cn
+      binddn: cn=admin,dc=example,dc=org
+      bindpw: ''
+      userRegistration: 'True'
+      userRegistrationRole: Public
+      rolesMapping: >-
+        { "cn=All,ou=Groups,dc=example,dc=org": ["User"],
+        "cn=Admins,ou=Groups,dc=example,dc=org": ["Admin"], }
+      rolesSyncAtLogin: 'True'
+      tls:
+        enabled: false
+        allowSelfSigned: true
+        certificatesSecret: ''
+        certificatesMountPath: /opt/bitnami/airflow/conf/certs
+        CAFilename: ''
+    service:
+      type: ClusterIP
+      ports:
+        http: 8080
+      nodePorts:
+        http: ''
+      sessionAffinity: None
+      sessionAffinityConfig: {}
+      clusterIP: ''
+      loadBalancerIP: ''
+      loadBalancerSourceRanges: []
+      externalTrafficPolicy: Cluster
+      annotations: {}
+      extraPorts: []
+    ingress:
+      enabled: false
+      ingressClassName: ''
+      pathType: ImplementationSpecific
+      apiVersion: ''
+      hostname: airflow.local
+      path: /
+      annotations: {}
+      tls: false
+      selfSigned: false
+      extraHosts: []
+      extraPaths: []
+      extraTls: []
+      secrets: []
+      extraRules: []
+    serviceAccount:
+      create: true
+      name: ''
+      automountServiceAccountToken: false
+      annotations: {}
+    rbac:
+      create: false
+      rules: []
+    metrics:
+      enabled: false
+      image:
+        registry: docker.io
+        repository: bitnami/airflow-exporter
+        tag: 0.20220314.0-debian-12-r35
+        digest: ''
+        pullPolicy: IfNotPresent
+        pullSecrets: []
+      extraEnvVars: []
+      extraEnvVarsCM: ''
+      extraEnvVarsSecret: ''
+      containerPorts:
+        http: 9112
+      resourcesPreset: nano
+      resources: {}
+      podSecurityContext:
+        enabled: true
+        fsGroupChangePolicy: Always
+        sysctls: []
+        supplementalGroups: []
+        fsGroup: 1001
+      containerSecurityContext:
+        enabled: true
+        seLinuxOptions: {}
+        runAsUser: 1001
+        runAsGroup: 1001
+        runAsNonRoot: true
+        privileged: false
+        allowPrivilegeEscalation: false
+        readOnlyRootFilesystem: true
+        capabilities:
+          drop:
+            - ALL
+        seccompProfile:
+          type: RuntimeDefault
+      lifecycleHooks: {}
+      automountServiceAccountToken: false
+      hostAliases: []
+      podLabels: {}
+      podAnnotations: {}
+      podAffinityPreset: ''
+      podAntiAffinityPreset: soft
+      nodeAffinityPreset:
+        type: ''
+        key: ''
+        values: []
+      affinity: {}
+      nodeSelector: {}
+      tolerations: []
+      schedulerName: ''
+      service:
+        ports:
+          http: 9112
+        clusterIP: ''
+        sessionAffinity: None
+        annotations:
+          prometheus.io/scrape: 'true'
+          prometheus.io/port: '{{ .Values.metrics.service.ports.http }}'
+      serviceMonitor:
+        enabled: false
+        namespace: ''
+        interval: ''
+        scrapeTimeout: ''
+        labels: {}
+        selector: {}
+        relabelings: []
+        metricRelabelings: []
+        honorLabels: false
+        jobLabel: ''
+      networkPolicy:
+        enabled: true
+        allowExternal: true
+        allowExternalEgress: true
+        extraIngress: []
+        extraEgress: []
+        ingressNSMatchLabels: {}
+        ingressNSPodMatchLabels: {}
+    postgresql:
+      enabled: true
+      auth:
+        enablePostgresUser: true
+        username: bn_airflow
+        password: ''
+        database: bitnami_airflow
+        existingSecret: ''
+      architecture: standalone
+      primary:
+        resourcesPreset: nano
+        resources: {}
+    externalDatabase:
+      host: localhost
+      port: 5432
+      user: bn_airflow
+      database: bitnami_airflow
+      password: ''
+      existingSecret: ''
+      existingSecretPasswordKey: ''
+    redis:
+      enabled: true
+      auth:
+        enabled: true
+        password: ''
+        existingSecret: ''
+      architecture: standalone
+      master:
+        resourcesPreset: nano
+        resources: {}
+    externalRedis:
+      host: localhost
+      port: 6379
+      username: ''
+      password: ''
+      existingSecret: ''
+      existingSecretPasswordKey: ''
