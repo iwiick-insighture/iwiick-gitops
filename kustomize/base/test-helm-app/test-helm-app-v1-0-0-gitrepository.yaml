@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: test-helm-app-v1-0-0
+  labels:
+    organizationId: org_6de1b366-9da6-4d55-b363-f5a2c4382016
+    projectId: project_c0bc69cf-4b2e-4493-ab8e-970a6433cce0
+    applicaitonId: app_9193ccc3-d07c-4ccd-8095-bf470e73fb56
+spec:
+  interval: 1m0s
+  url: https://github.com/ThameeraSithnuwan/test-helm-app
+  ref:
+    branch: main
+  secretRef:
+    name: test-helm-app-v1-0-0-secret
