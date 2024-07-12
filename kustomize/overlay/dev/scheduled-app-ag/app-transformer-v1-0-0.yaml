@@ -1,0 +1,45 @@
+apiVersion: transformers.customplugin.co/v1
+kind: SkyUAppTransformer
+metadata:
+  name: skyu-deployment
+  annotations:
+    config.kubernetes.io/function: |
+      exec:
+        path: skyu-app-transformer
+spec:
+  applicationContainers:
+    - imageTag: latest
+      cpuRequestMili: 100
+      cpuLimitMili: 150
+      memoryRequestMb: 350
+      memoryLimitMb: 450
+      args: []
+      command: []
+      configMounts: []
+      applicationPorts: []
+      healthChecks: []
+      name: scheduled-app-main
+      imagePullPolicy: Always
+      imageRegistry: 272133924862.dkr.ecr.us-east-1.amazonaws.com/scheduled-app
+      credentialId: credential_0a584b91-a6a3-4670-bbcb-9c0dfd47bbf1
+  minReplicas: 1
+  maxReplicas: 1
+  terminationGracePeriodSeconds: 60
+  nodeSelector: {}
+  suspend: false
+  ttlSecondsAfterFinished: 86400
+  labels:
+    app: scheduled-app-ag
+    version: v1.0.0
+    applicationId: app_9080e0e7-6b8a-4469-b2ca-4a5505054fd3
+    projectId: project_c0bc69cf-4b2e-4493-ab8e-970a6433cce0
+    organizationId: org_6de1b366-9da6-4d55-b363-f5a2c4382016
+    environmentId: env_43e64b64-120e-40d5-a2c6-410f6af23e90
+    environmentName: dev
+  horizontalAutoScalingRules: []
+  volumes: []
+  type: CronJob
+  name: scheduled-app
+  cronTab: 0 * * * *
+  version: v1.0.0
+  namespace: iwiick-proj-1-dev
