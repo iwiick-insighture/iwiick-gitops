@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: testdddf-v1-0-0
+  labels:
+    app: testdddf-v1-0-0
+    applicationId: app_09b3b3d5-5e35-49b2-a916-eae42ccd473d
+    version: v1.0.0
+    organizationId: org_6de1b366-9da6-4d55-b363-f5a2c4382016
+    projectId: project_c0bc69cf-4b2e-4493-ab8e-970a6433cce0
+  annotations:
+    reloader.stakater.com/auto: 'true'
+spec:
+  selector:
+    matchLabels:
+      app: testdddf-v1-0-0
+  template:
+    metadata:
+      labels:
+        app: testdddf-v1-0-0
+        applicationId: app_09b3b3d5-5e35-49b2-a916-eae42ccd473d
+        version: v1.0.0
+        organizationId: org_6de1b366-9da6-4d55-b363-f5a2c4382016
+        projectId: project_c0bc69cf-4b2e-4493-ab8e-970a6433cce0
