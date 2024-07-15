@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tesrr-v1-0-0
+  labels:
+    app: tesrr-v1-0-0
+    applicationId: app_3d4e3a02-b77b-4a00-b970-707484cf39cc
+    version: v1.0.0
+    organizationId: org_6de1b366-9da6-4d55-b363-f5a2c4382016
+    projectId: project_c0bc69cf-4b2e-4493-ab8e-970a6433cce0
+  annotations:
+    reloader.stakater.com/auto: 'true'
+spec:
+  selector:
+    matchLabels:
+      app: tesrr-v1-0-0
+  template:
+    metadata:
+      labels:
+        app: tesrr-v1-0-0
+        applicationId: app_3d4e3a02-b77b-4a00-b970-707484cf39cc
+        version: v1.0.0
+        organizationId: org_6de1b366-9da6-4d55-b363-f5a2c4382016
+        projectId: project_c0bc69cf-4b2e-4493-ab8e-970a6433cce0
