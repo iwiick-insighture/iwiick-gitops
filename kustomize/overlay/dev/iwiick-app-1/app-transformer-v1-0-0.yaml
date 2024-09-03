@@ -8,8 +8,7 @@ metadata:
         path: skyu-app-transformer
 spec:
   applicationContainers:
-    - imageTag: latest
-      cpuRequestMili: 100
+    - cpuRequestMili: 100
       cpuLimitMili: 150
       memoryRequestMb: 350
       memoryLimitMb: 450
@@ -20,7 +19,6 @@ spec:
       healthChecks: []
       name: iwiick-app-1-main
       imagePullPolicy: Always
-      imageRegistry: 272133924862.dkr.ecr.us-east-1.amazonaws.com/iwiick-app-1
       credentialId: credential_0a584b91-a6a3-4670-bbcb-9c0dfd47bbf1
   minReplicas: 1
   maxReplicas: 1
