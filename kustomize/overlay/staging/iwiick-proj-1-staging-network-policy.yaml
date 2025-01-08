@@ -4,9 +4,9 @@ metadata:
   name: allow-egress-and-limited-ingress
   namespace: iwiick-proj-1-staging
   labels:
-    organizationId: org_6de1b366-9da6-4d55-b363-f5a2c4382016
-    projectId: project_c0bc69cf-4b2e-4493-ab8e-970a6433cce0
-    environmentId: env_5b89d46d-9a16-4f9f-ad9a-926157935bc6
+    organizationId: org_5bdc6e05-06b5-4d67-91b9-f020de5fdd93
+    projectId: project_82f4100c-84e8-48e5-ba8e-3d53f7e54908
+    environmentId: env_c39087ff-6627-4b57-a1f4-736bd6d2be0e
 spec:
   podSelector: {}
   egress:
@@ -18,11 +18,16 @@ spec:
     - from:
         - namespaceSelector:
             matchLabels:
-              environmentId: env_5b89d46d-9a16-4f9f-ad9a-926157935bc6
+              environmentId: env_c39087ff-6627-4b57-a1f4-736bd6d2be0e
     - from:
         - namespaceSelector:
             matchLabels:
-              name: skyu-system
-    - ports:
-        - protocol: UDP
-          port: 53
+              kubernetes.io/metadata.name: skyu-system
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              role: ingress
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              role: observability
