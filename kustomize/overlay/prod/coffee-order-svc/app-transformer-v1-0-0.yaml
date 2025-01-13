@@ -8,7 +8,7 @@ metadata:
         path: skyu-app-transformer
 spec:
   applicationContainers:
-    - imageTag: latest
+    - imageTag: a685b39bfc15a6f50177cc1580297f2ece3343de
       cpuRequestMili: 100
       cpuLimitMili: 150
       memoryRequestMb: 350
@@ -22,6 +22,12 @@ spec:
       imagePullPolicy: Always
       imageRegistry: 272133924862.dkr.ecr.us-east-1.amazonaws.com/coffee-order-svc
       credentialId: credential_89bcf7ed-27ac-4acf-beeb-6c869fab8bbd
+      commitDetails:
+        commitHash: a685b39bfc15a6f50177cc1580297f2ece3343de
+        commitTime: ''
+        commitUser: ''
+        commitAvatar: https://github.com/.png
+        commitMessage: Deploy coffee-order-svc to dev
   minReplicas: 1
   maxReplicas: 1
   terminationGracePeriodSeconds: 60
