@@ -8,8 +8,7 @@ metadata:
         path: skyu-app-transformer
 spec:
   applicationContainers:
-    - imageTag: latest
-      cpuRequestMili: 100
+    - cpuRequestMili: 100
       cpuLimitMili: 150
       memoryRequestMb: 350
       memoryLimitMb: 450
@@ -20,7 +19,6 @@ spec:
       healthChecks: []
       name: coffee-catalog-svc-main
       imagePullPolicy: Always
-      imageRegistry: 272133924862.dkr.ecr.us-east-1.amazonaws.com/coffee-catalog-svc
       credentialId: credential_89bcf7ed-27ac-4acf-beeb-6c869fab8bbd
   minReplicas: 1
   maxReplicas: 1
